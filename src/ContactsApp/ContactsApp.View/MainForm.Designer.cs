@@ -32,12 +32,17 @@
             this.MainTableLayoutPanel = new System.Windows.Forms.TableLayoutPanel();
             this.LeftPanel = new System.Windows.Forms.Panel();
             this.ButtonsTableLayoutPanel = new System.Windows.Forms.TableLayoutPanel();
+            this.AddContactbutton = new System.Windows.Forms.PictureBox();
+            this.EditContactbutton = new System.Windows.Forms.PictureBox();
+            this.RemoveContactbutton = new System.Windows.Forms.PictureBox();
             this.FindLabel = new System.Windows.Forms.Label();
             this.FindTextBox = new System.Windows.Forms.TextBox();
             this.ContactsListBox = new System.Windows.Forms.ListBox();
             this.RightPanel = new System.Windows.Forms.Panel();
             this.BirthdayPanel = new System.Windows.Forms.Panel();
+            this.BirthdayPanelCloseButton = new System.Windows.Forms.PictureBox();
             this.TodayIsBirthdayOfLabel = new System.Windows.Forms.Label();
+            this.ImageInfoPictureBox = new System.Windows.Forms.PictureBox();
             this.VKTextBox = new System.Windows.Forms.TextBox();
             this.VKLabel = new System.Windows.Forms.Label();
             this.DateOfBirthTextBox = new System.Windows.Forms.TextBox();
@@ -48,20 +53,15 @@
             this.EmailLabel = new System.Windows.Forms.Label();
             this.FullNameTextBox = new System.Windows.Forms.TextBox();
             this.FullNameLabel = new System.Windows.Forms.Label();
-            this.AddContactbutton = new System.Windows.Forms.PictureBox();
-            this.EditContactbutton = new System.Windows.Forms.PictureBox();
-            this.RemoveContactbutton = new System.Windows.Forms.PictureBox();
-            this.BirthdayPanelCloseButton = new System.Windows.Forms.PictureBox();
-            this.ImageInfoPictureBox = new System.Windows.Forms.PictureBox();
             this.PhotoPictureBox = new System.Windows.Forms.PictureBox();
             this.MainTableLayoutPanel.SuspendLayout();
             this.LeftPanel.SuspendLayout();
             this.ButtonsTableLayoutPanel.SuspendLayout();
-            this.RightPanel.SuspendLayout();
-            this.BirthdayPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.AddContactbutton)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.EditContactbutton)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.RemoveContactbutton)).BeginInit();
+            this.RightPanel.SuspendLayout();
+            this.BirthdayPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.BirthdayPanelCloseButton)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ImageInfoPictureBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.PhotoPictureBox)).BeginInit();
@@ -112,6 +112,48 @@
             this.ButtonsTableLayoutPanel.Size = new System.Drawing.Size(238, 36);
             this.ButtonsTableLayoutPanel.TabIndex = 3;
             // 
+            // AddContactbutton
+            // 
+            this.AddContactbutton.Image = global::ContactsApp.View.Properties.Resources.add_contact_32x32_gray;
+            this.AddContactbutton.Location = new System.Drawing.Point(0, 0);
+            this.AddContactbutton.Margin = new System.Windows.Forms.Padding(0);
+            this.AddContactbutton.Name = "AddContactbutton";
+            this.AddContactbutton.Size = new System.Drawing.Size(79, 36);
+            this.AddContactbutton.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
+            this.AddContactbutton.TabIndex = 0;
+            this.AddContactbutton.TabStop = false;
+            this.AddContactbutton.Click += new System.EventHandler(this.AddContactbutton_Click);
+            this.AddContactbutton.MouseEnter += new System.EventHandler(this.AddContactbutton_MouseEnter);
+            this.AddContactbutton.MouseLeave += new System.EventHandler(this.AddContactbutton_MouseLeave);
+            // 
+            // EditContactbutton
+            // 
+            this.EditContactbutton.Image = global::ContactsApp.View.Properties.Resources.edit_contact_32x32_gray;
+            this.EditContactbutton.Location = new System.Drawing.Point(79, 0);
+            this.EditContactbutton.Margin = new System.Windows.Forms.Padding(0);
+            this.EditContactbutton.Name = "EditContactbutton";
+            this.EditContactbutton.Size = new System.Drawing.Size(79, 36);
+            this.EditContactbutton.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
+            this.EditContactbutton.TabIndex = 1;
+            this.EditContactbutton.TabStop = false;
+            this.EditContactbutton.Click += new System.EventHandler(this.EditContactbutton_Click);
+            this.EditContactbutton.MouseEnter += new System.EventHandler(this.EditContactbutton_MouseEnter);
+            this.EditContactbutton.MouseLeave += new System.EventHandler(this.EditContactbutton_MouseLeave);
+            // 
+            // RemoveContactbutton
+            // 
+            this.RemoveContactbutton.Image = global::ContactsApp.View.Properties.Resources.remove_contact_32x32_gray;
+            this.RemoveContactbutton.Location = new System.Drawing.Point(158, 0);
+            this.RemoveContactbutton.Margin = new System.Windows.Forms.Padding(0);
+            this.RemoveContactbutton.Name = "RemoveContactbutton";
+            this.RemoveContactbutton.Size = new System.Drawing.Size(80, 36);
+            this.RemoveContactbutton.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
+            this.RemoveContactbutton.TabIndex = 2;
+            this.RemoveContactbutton.TabStop = false;
+            this.RemoveContactbutton.Click += new System.EventHandler(this.RemoveContactbutton_Click);
+            this.RemoveContactbutton.MouseEnter += new System.EventHandler(this.RemoveContactbutton_MouseEnter);
+            this.RemoveContactbutton.MouseLeave += new System.EventHandler(this.RemoveContactbutton_MouseLeave);
+            // 
             // FindLabel
             // 
             this.FindLabel.AutoSize = true;
@@ -139,6 +181,7 @@
             this.ContactsListBox.Name = "ContactsListBox";
             this.ContactsListBox.Size = new System.Drawing.Size(238, 376);
             this.ContactsListBox.TabIndex = 0;
+            this.ContactsListBox.SelectedIndexChanged += new System.EventHandler(this.ContactsListBox_SelectedIndexChanged);
             // 
             // RightPanel
             // 
@@ -173,6 +216,18 @@
             this.BirthdayPanel.Size = new System.Drawing.Size(538, 75);
             this.BirthdayPanel.TabIndex = 11;
             // 
+            // BirthdayPanelCloseButton
+            // 
+            this.BirthdayPanelCloseButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.BirthdayPanelCloseButton.Image = global::ContactsApp.View.Properties.Resources.close_32x32;
+            this.BirthdayPanelCloseButton.Location = new System.Drawing.Point(503, 3);
+            this.BirthdayPanelCloseButton.Name = "BirthdayPanelCloseButton";
+            this.BirthdayPanelCloseButton.Size = new System.Drawing.Size(32, 32);
+            this.BirthdayPanelCloseButton.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
+            this.BirthdayPanelCloseButton.TabIndex = 3;
+            this.BirthdayPanelCloseButton.TabStop = false;
+            this.BirthdayPanelCloseButton.Click += new System.EventHandler(this.BirthdayPanelCloseButton_Click);
+            // 
             // TodayIsBirthdayOfLabel
             // 
             this.TodayIsBirthdayOfLabel.AutoSize = true;
@@ -183,6 +238,16 @@
             this.TodayIsBirthdayOfLabel.Size = new System.Drawing.Size(124, 13);
             this.TodayIsBirthdayOfLabel.TabIndex = 1;
             this.TodayIsBirthdayOfLabel.Text = "Today is Birthday of:";
+            // 
+            // ImageInfoPictureBox
+            // 
+            this.ImageInfoPictureBox.Image = global::ContactsApp.View.Properties.Resources.info_48x48;
+            this.ImageInfoPictureBox.Location = new System.Drawing.Point(3, 3);
+            this.ImageInfoPictureBox.Name = "ImageInfoPictureBox";
+            this.ImageInfoPictureBox.Size = new System.Drawing.Size(61, 69);
+            this.ImageInfoPictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
+            this.ImageInfoPictureBox.TabIndex = 0;
+            this.ImageInfoPictureBox.TabStop = false;
             // 
             // VKTextBox
             // 
@@ -277,67 +342,6 @@
             this.FullNameLabel.TabIndex = 1;
             this.FullNameLabel.Text = "Full Name:";
             // 
-            // AddContactbutton
-            // 
-            this.AddContactbutton.Image = global::ContactsApp.View.Properties.Resources.add_contact_32x32_gray;
-            this.AddContactbutton.Location = new System.Drawing.Point(0, 0);
-            this.AddContactbutton.Margin = new System.Windows.Forms.Padding(0);
-            this.AddContactbutton.Name = "AddContactbutton";
-            this.AddContactbutton.Size = new System.Drawing.Size(79, 36);
-            this.AddContactbutton.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
-            this.AddContactbutton.TabIndex = 0;
-            this.AddContactbutton.TabStop = false;
-            this.AddContactbutton.MouseEnter += new System.EventHandler(this.AddContactbutton_MouseEnter);
-            this.AddContactbutton.MouseLeave += new System.EventHandler(this.AddContactbutton_MouseLeave);
-            // 
-            // EditContactbutton
-            // 
-            this.EditContactbutton.Image = global::ContactsApp.View.Properties.Resources.edit_contact_32x32_gray;
-            this.EditContactbutton.Location = new System.Drawing.Point(79, 0);
-            this.EditContactbutton.Margin = new System.Windows.Forms.Padding(0);
-            this.EditContactbutton.Name = "EditContactbutton";
-            this.EditContactbutton.Size = new System.Drawing.Size(79, 36);
-            this.EditContactbutton.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
-            this.EditContactbutton.TabIndex = 1;
-            this.EditContactbutton.TabStop = false;
-            this.EditContactbutton.MouseEnter += new System.EventHandler(this.EditContactbutton_MouseEnter);
-            this.EditContactbutton.MouseLeave += new System.EventHandler(this.EditContactbutton_MouseLeave);
-            // 
-            // RemoveContactbutton
-            // 
-            this.RemoveContactbutton.Image = global::ContactsApp.View.Properties.Resources.remove_contact_32x32_gray;
-            this.RemoveContactbutton.Location = new System.Drawing.Point(158, 0);
-            this.RemoveContactbutton.Margin = new System.Windows.Forms.Padding(0);
-            this.RemoveContactbutton.Name = "RemoveContactbutton";
-            this.RemoveContactbutton.Size = new System.Drawing.Size(80, 36);
-            this.RemoveContactbutton.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
-            this.RemoveContactbutton.TabIndex = 2;
-            this.RemoveContactbutton.TabStop = false;
-            this.RemoveContactbutton.MouseEnter += new System.EventHandler(this.RemoveContactbutton_MouseEnter);
-            this.RemoveContactbutton.MouseLeave += new System.EventHandler(this.RemoveContactbutton_MouseLeave);
-            // 
-            // BirthdayPanelCloseButton
-            // 
-            this.BirthdayPanelCloseButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.BirthdayPanelCloseButton.Image = global::ContactsApp.View.Properties.Resources.close_32x32;
-            this.BirthdayPanelCloseButton.Location = new System.Drawing.Point(503, 3);
-            this.BirthdayPanelCloseButton.Name = "BirthdayPanelCloseButton";
-            this.BirthdayPanelCloseButton.Size = new System.Drawing.Size(32, 32);
-            this.BirthdayPanelCloseButton.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
-            this.BirthdayPanelCloseButton.TabIndex = 3;
-            this.BirthdayPanelCloseButton.TabStop = false;
-            this.BirthdayPanelCloseButton.Click += new System.EventHandler(this.BirthdayPanelCloseButton_Click);
-            // 
-            // ImageInfoPictureBox
-            // 
-            this.ImageInfoPictureBox.Image = global::ContactsApp.View.Properties.Resources.info_48x48;
-            this.ImageInfoPictureBox.Location = new System.Drawing.Point(3, 3);
-            this.ImageInfoPictureBox.Name = "ImageInfoPictureBox";
-            this.ImageInfoPictureBox.Size = new System.Drawing.Size(61, 69);
-            this.ImageInfoPictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
-            this.ImageInfoPictureBox.TabIndex = 0;
-            this.ImageInfoPictureBox.TabStop = false;
-            // 
             // PhotoPictureBox
             // 
             this.PhotoPictureBox.Image = global::ContactsApp.View.Properties.Resources.photo_placeholder_100x100;
@@ -364,13 +368,13 @@
             this.LeftPanel.ResumeLayout(false);
             this.LeftPanel.PerformLayout();
             this.ButtonsTableLayoutPanel.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.AddContactbutton)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.EditContactbutton)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.RemoveContactbutton)).EndInit();
             this.RightPanel.ResumeLayout(false);
             this.RightPanel.PerformLayout();
             this.BirthdayPanel.ResumeLayout(false);
             this.BirthdayPanel.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.AddContactbutton)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.EditContactbutton)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.RemoveContactbutton)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.BirthdayPanelCloseButton)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ImageInfoPictureBox)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.PhotoPictureBox)).EndInit();

@@ -1,21 +1,141 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-
-namespace ContactsApp.View
+﻿namespace ContactsApp.View
 {
+    using ContactsApp.Model;
+    using System;
+    using System.Collections.Generic;
+    using System.Drawing;
+    using System.Windows.Forms;
+
     public partial class MainForm : Form
     {
+        /// <summary>
+        /// Объект класса Project.
+        /// </summary>
+        private Project _project = new Project();
+
         public MainForm()
         {
             InitializeComponent();
         }
+
+        /// <summary>
+        /// Обновляет список контактов в ContactsListBox.
+        /// </summary>
+        private void UpdateListBox()
+        {
+            if (_project.Contacts != null)
+            {
+                ContactsListBox.Items.Clear();
+            }
+
+            foreach (var item in _project.Contacts)
+            {
+                ContactsListBox.Items.Add(item.FullName);
+            }
+        }
+
+        private void AddContact()
+        {
+            var rand = new Random();
+            List<string> testContacts = new List<string>()
+            {
+                "Левина Ксения", "Александрова София", "Бирюков Богдан", "Борисов Игорь",
+                "Михайлов Павел", "Одинцова Эмилия", "Пименова Антонина", "Максимова Анна",
+                "Тихомиров Максим", "Бычкова Варвара", "Столярова Юлия", "Ульянов Александр",
+                "Смирнов Максим", "Попов Всеволод", "Леонов Тигран", "Тарасова Стефания",
+                "Косарева Милана", "Калинин Даниил", "Козлов Евгений",
+            };
+
+            Project project = new Project();
+
+            for (int i = 0; i < testContacts.Count; i++)
+            {
+                Contact contact = new Contact(" ", " ", "+7 (000) 000-00-00", DateTime.Today, " ");
+                contact.FullName = testContacts[rand.Next(testContacts.Count)];
+                project.Contacts.Add(contact);
+
+            }
+            _project = project;
+        }
+
+        /// <summary>
+        /// Удаление контакта из проекта.
+        /// </summary>
+        /// <param name="index">Индекс выбранного контакта в ContactsListBox.</param>
+        private void RemoveContact(int index)
+        {
+            if (index == -1)
+            {
+                return;
+            }
+            DialogResult dialogResult = MessageBox.Show("Вы действительно хотите удалить "
+                + _project.Contacts[index].FullName, "Предупреждение", MessageBoxButtons.YesNo
+                , MessageBoxIcon.Warning);
+            if (dialogResult == DialogResult.Yes)
+            {
+                _project.Contacts.RemoveAt(index);
+                ClearSelectedContact();
+            }
+            else if (dialogResult == DialogResult.No)
+            {
+                return;
+            }
+        }
+
+        private void UpdateSelectedContact(int index)
+        {
+            FullNameTextBox.Text = _project.Contacts[index].FullName;
+            EmailTextBox.Text = _project.Contacts[index].EMail;
+            PhoneNumberTextBox.Text = _project.Contacts[index].PhoneNumber;
+            DateOfBirthTextBox.Text = System.Convert.ToString(_project.Contacts[index].DateOfBirth);
+            VKTextBox.Text = _project.Contacts[index].IdVK;
+        }
+
+        private void ClearSelectedContact()
+        {
+            FullNameTextBox.Clear();
+            EmailTextBox.Clear();
+            PhoneNumberTextBox.Clear();
+            DateOfBirthTextBox.Clear();
+            VKTextBox.Clear();
+        }
+
+        private void ContactsListBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (ContactsListBox.SelectedIndex == -1)
+            {
+                ClearSelectedContact();
+            }
+            else
+            {
+                UpdateSelectedContact(ContactsListBox.SelectedIndex);
+            }
+
+        }
+
+
+    private void AddContactbutton_Click(object sender, EventArgs e)
+        {
+            AddContact();
+            UpdateListBox();
+            //var form = new ContactForm();
+            //form.ShowDialog();
+            //Activate();
+        }
+
+        private void RemoveContactbutton_Click(object sender, EventArgs e)
+        {
+            RemoveContact(ContactsListBox.SelectedIndex);
+            UpdateListBox();
+        }
+
+        private void EditContactbutton_Click(object sender, EventArgs e)
+        {
+            var form = new ContactForm();
+            form.ShowDialog();
+            Activate();
+        }
+
 
         private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
         {

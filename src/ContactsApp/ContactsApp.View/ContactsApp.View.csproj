@@ -140,5 +140,11 @@
   <ItemGroup>
     <None Include="Resources\remove_contact_32x32_gray.png" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\ContactsApp.Model\ContactsApp.Model.csproj">
+      <Project>{45527087-9309-471e-a041-7d3db7ee1a89}</Project>
+      <Name>ContactsApp.Model</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
