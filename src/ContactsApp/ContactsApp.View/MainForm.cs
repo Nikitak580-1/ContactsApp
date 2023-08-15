@@ -118,9 +118,9 @@
         {
             AddContact();
             UpdateListBox();
-            //var form = new ContactForm();
-            //form.ShowDialog();
-            //Activate();
+            var form = new ContactForm();
+            form.ShowDialog();
+            Activate();
         }
 
         private void RemoveContactbutton_Click(object sender, EventArgs e)
