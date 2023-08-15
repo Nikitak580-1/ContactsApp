@@ -2,7 +2,6 @@
 {
     using ContactsApp.Model;
     using System;
-    using System.Collections.Generic;
     using System.Drawing;
     using System.Windows.Forms;
 
@@ -23,11 +22,7 @@
         /// </summary>
         private void UpdateListBox()
         {
-            if (_project.Contacts != null)
-            {
-                ContactsListBox.Items.Clear();
-            }
-
+            ContactsListBox.Items.Clear();
             foreach (var item in _project.Contacts)
             {
                 ContactsListBox.Items.Add(item.FullName);
@@ -36,26 +31,28 @@
 
         private void AddContact()
         {
-            var rand = new Random();
-            List<string> testContacts = new List<string>()
+            ContactForm contactForm = new ContactForm();
+            DialogResult = contactForm.ShowDialog();
+
+            if (DialogResult == DialogResult.OK)
             {
-                "Левина Ксения", "Александрова София", "Бирюков Богдан", "Борисов Игорь",
-                "Михайлов Павел", "Одинцова Эмилия", "Пименова Антонина", "Максимова Анна",
-                "Тихомиров Максим", "Бычкова Варвара", "Столярова Юлия", "Ульянов Александр",
-                "Смирнов Максим", "Попов Всеволод", "Леонов Тигран", "Тарасова Стефания",
-                "Косарева Милана", "Калинин Даниил", "Козлов Евгений",
-            };
-
-            Project project = new Project();
-
-            for (int i = 0; i < testContacts.Count; i++)
-            {
-                Contact contact = new Contact(" ", " ", "+7 (000) 000-00-00", DateTime.Today, " ");
-                contact.FullName = testContacts[rand.Next(testContacts.Count)];
-                project.Contacts.Add(contact);
-
+                _project.Contacts.Add(contactForm.Contact);
             }
-            _project = project;
+        }
+
+        private void EditContact(int index)
+        {
+            if (index == -1)
+            {
+                return;
+            }
+
+            ContactForm contactForm = new ContactForm((Contact)_project.Contacts[index].Clone());
+            DialogResult = contactForm.ShowDialog();
+            if (DialogResult == DialogResult.OK)
+            {
+                _project.Contacts[index] = contactForm.Contact;
+            }
         }
 
         /// <summary>
@@ -84,6 +81,10 @@
 
         private void UpdateSelectedContact(int index)
         {
+            if (index == -1)
+            {
+                return;
+            }
             FullNameTextBox.Text = _project.Contacts[index].FullName;
             EmailTextBox.Text = _project.Contacts[index].EMail;
             PhoneNumberTextBox.Text = _project.Contacts[index].PhoneNumber;
@@ -113,14 +114,10 @@
 
         }
 
-
     private void AddContactbutton_Click(object sender, EventArgs e)
         {
             AddContact();
             UpdateListBox();
-            var form = new ContactForm();
-            form.ShowDialog();
-            Activate();
         }
 
         private void RemoveContactbutton_Click(object sender, EventArgs e)
@@ -131,9 +128,10 @@
 
         private void EditContactbutton_Click(object sender, EventArgs e)
         {
-            var form = new ContactForm();
-            form.ShowDialog();
-            Activate();
+            var index = ContactsListBox.SelectedIndex;
+            EditContact(index);
+            UpdateSelectedContact(index);
+            UpdateListBox();
         }
 
 
