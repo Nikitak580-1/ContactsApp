@@ -5,6 +5,7 @@
     using System.Collections.Generic;
     using System.Drawing;
     using System.Windows.Forms;
+
     public partial class MainForm : Form
     {
         /// <summary>
@@ -16,9 +17,16 @@
         /// </summary>
         private List<Contact> _currentContacts;
 
+        /// <summary>
+        /// Сериализатор и дисериализатор.
+        /// </summary>
+        ProjectManager _projectManager;
+
         public MainForm()
         {
             InitializeComponent();
+            _projectManager = new ProjectManager();
+            _project = _projectManager.LoadFromFile();
             UpdateCurrentProject();
             UpdateListBox();
         }
@@ -136,6 +144,7 @@
             _project.SortContacts(_project.Contacts);
             UpdateCurrentProject();
             UpdateListBox();
+            _projectManager.SaveToFile(_project);
         }
         private void EditContactbutton_Click(object sender, EventArgs e)
         {
@@ -144,6 +153,7 @@
                 EditContact(_project.Contacts.IndexOf(_currentContacts[ContactsListBox.SelectedIndex]));
                 UpdateCurrentProject();
                 UpdateListBox();
+                _projectManager.SaveToFile(_project);
                 EmptyListContact();
                 ClearSelectedContact();
             }
@@ -156,6 +166,7 @@
                 RemoveContact(_project.Contacts.IndexOf(_currentContacts[ContactsListBox.SelectedIndex]));
                 UpdateCurrentProject();
                 UpdateListBox();
+                _projectManager.SaveToFile(_project);
                 EmptyListContact();
                 ClearSelectedContact();
             }
