@@ -7,7 +7,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ContactsApp.View", "Contact
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ContactsApp.Model", "ContactsApp.Model\ContactsApp.Model.csproj", "{45527087-9309-471E-A041-7D3DB7EE1A89}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ContactsAppUnitTests", "UnitTests\ContactsAppUnitTests.csproj", "{7DCBDA73-2AD3-4DFF-BDC7-97C074832B7B}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ContactsApp.ModelUnitTests", "UnitTests\ContactsApp.ModelUnitTests.csproj", "{7DCBDA73-2AD3-4DFF-BDC7-97C074832B7B}"
 	ProjectSection(ProjectDependencies) = postProject
 		{45527087-9309-471E-A041-7D3DB7EE1A89} = {45527087-9309-471E-A041-7D3DB7EE1A89}
 	EndProjectSection
